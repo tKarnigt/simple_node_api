@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  nodejs:
+    container_name: simple-nodejs-container
+    build: .
+    ports:
+      - "3001:3001"
+  nginx:
+    container_name: simple-nginx-container
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - nodejs
