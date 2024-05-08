@@ -3,7 +3,9 @@ version: '3.8'
 services:
   nodejs:
     container_name: simple-nodejs-container
-    build: .
+    build: 
+      context: .
+    image: tkarnigt/simple-nodejs-api
     ports:
       - "3001:3001"
   nginx:
@@ -11,6 +13,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.nginx
+    image: tkarnigt/simple-nginx
     ports:
       - "80:80"
     depends_on:
