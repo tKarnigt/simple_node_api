@@ -46,8 +46,8 @@ pipeline {
     }
     stage('Push images to docker hub') {
       steps {
-        sh 'docker push tkarnigt/simple-nodejs-api:lastest'
-        sh 'docker push tkarnigt/simple-nginx:lastest'
+        sh 'docker push tkarnigt/simple-nodejs-api:latest'
+        sh 'docker push tkarnigt/simple-nginx:latest'
       }
     }
     stage('Clean Workspace') {
