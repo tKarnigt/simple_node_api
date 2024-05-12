@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  nodejs:
+  nodejs-service:
     container_name: simple-nodejs-container
     build: 
       context: .
@@ -17,4 +17,4 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - nodejs
+      - nodejs-service
