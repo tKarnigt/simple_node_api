@@ -8,10 +8,7 @@ pipeline {
       steps {
         dir('./simple_node_api'){
           git branch: 'main', url: 'https://github.com/tKarnigt/simple_node_api.git'
-          script {
-            env.PATH = "${env.PATH}:${tool 'NodeJS'}/bin"
-            sh 'npm install'
-          }
+          sh 'npm install'
         }
       }
     }
