@@ -6,7 +6,10 @@ pipeline {
   stages {
     stage('Clone a applicaiton') {
       steps {
-        git branch: 'main', url: 'https://github.com/tKarnigt/simple_node_api.git'
+        dir('./simple_node_api'){
+          git branch: 'main', url: 'https://github.com/tKarnigt/simple_node_api.git'
+        }
+        sh 'cd simple_node_api'
       }
     }
     stage('Install packages & Run unittest') {
@@ -21,11 +24,14 @@ pipeline {
       }
     }
     stage('Clone robot test & Run test api'){
-        steps {
-            sh 'cd ..'
-            git branch: 'main', url: 'https://github.com/tKarnigt/simple_test_api.git'
-            sh 'robot simple-test.api.robot'
+      steps {
+        sh 'cd ..'
+        dir('./simple_test_api'){
+          git branch: 'main', url: 'https://github.com/tKarnigt/simple_test_api.git'
         }
+        sh 'cd simple_test_api'
+        sh 'robot simple-test.api.robot'
+      }
     }
     stage('Building images') {
       steps {
