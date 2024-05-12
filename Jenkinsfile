@@ -52,7 +52,7 @@ pipeline {
     }
     stage('Clean Workspace') {
       steps {
-        sh 'docker compose -f ./docker-compose.dev.yaml down'
+        sh 'docker compose down'
         sh 'docker system prune -a -f'
       }
     }
