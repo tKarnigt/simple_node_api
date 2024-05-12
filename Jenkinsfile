@@ -2,6 +2,9 @@ pipeline {
   agent {
     label 'tester'
   }
+  tools {
+    nodejs 'node-20.13.1'
+  }
 
   stages {
     stage('Clone a applicaiton') {
