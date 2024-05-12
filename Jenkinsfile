@@ -8,34 +8,37 @@ pipeline {
       steps {
         dir('./simple_node_api'){
           git branch: 'main', url: 'https://github.com/tKarnigt/simple_node_api.git'
+          sh 'npm install'
         }
-        sh 'cd simple_node_api'
       }
     }
     stage('Install packages & Run unittest') {
       steps {
-        sh 'npm install'
-        sh 'npm test'
+        dir('./simple_node_api'){
+          sh 'npm test'
+        }
       }
     }
     stage('Run simple api container') {
       steps {
-        sh 'docker compose up -d --build'
+        dir('./simple_node_api'){
+          sh 'docker compose up -d --build'
+        }
       }
     }
     stage('Clone robot test & Run test api'){
       steps {
-        sh 'cd ..'
         dir('./simple_test_api'){
           git branch: 'main', url: 'https://github.com/tKarnigt/simple_test_api.git'
+          sh 'robot simple-test.api.robot'
         }
-        sh 'cd simple_test_api'
-        sh 'robot simple-test.api.robot'
       }
     }
     stage('Building images') {
       steps {
-        sh 'docker compose build'
+        dir('./simple_node_api'){
+          sh 'docker compose build'
+        }
       }
     }
     stage('Push images to docker hub') {
