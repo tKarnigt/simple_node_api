@@ -8,6 +8,7 @@ pipeline {
       steps {
         dir('./simple_node_api'){
           git branch: 'main', url: 'https://github.com/tKarnigt/simple_node_api.git'
+          env.PATH = "/home/ubuntu/.nvm/versions/node/v20.13.1/bin:${env.PATH}"
           sh 'npm install'
         }
       }
