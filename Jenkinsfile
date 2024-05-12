@@ -7,7 +7,6 @@ pipeline {
     stage('Clone a applicaiton') {
       steps {
         git branch: 'main', url: 'https://github.com/tKarnigt/simple_node_api.git'
-        sh 'cd simple_node_api'
       }
     }
     stage('Install packages & Run unittest') {
@@ -25,7 +24,6 @@ pipeline {
         steps {
             sh 'cd ..'
             git branch: 'main', url: 'https://github.com/tKarnigt/simple_test_api.git'
-            sh 'cd simple_test_api'
             sh 'robot simple-test.api.robot'
         }
     }
