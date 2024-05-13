@@ -47,13 +47,15 @@ pipeline {
         sh 'docker system prune -a -f'
       }
     }
-    // stage('Running Preprod') {
-    //   agent {
-    //     label 'vm3'
-    //   }
-    //   steps {
-    //     sh 'docker compose down && docker system prune -a -f && docker compose up -d --build'
-    //   }
-    // }
+    stage('Running Preprod') {
+      agent {
+        label 'preprod'
+      }
+      steps {
+        sh 'docker compose down'
+        sh 'docker system prune -a -f'
+        sh 'docker sompose up -d'
+      }
+    }
   }
 }
