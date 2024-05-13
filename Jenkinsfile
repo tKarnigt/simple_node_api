@@ -2,12 +2,13 @@ pipeline {
   agent {
     label 'tester'
   }
-  tools {
-    nodejs 'node-20.13.1'
-  }
+  
 
   stages {
     stage('Install packages') {
+      tools {
+        nodejs 'node-20.13.1' 
+      }
       steps {
         sh 'npm install'
       }
@@ -59,6 +60,9 @@ pipeline {
 
       agent {
         label 'local'
+      }
+      tools {
+        kubectl
       }
       steps {
         sh 'kubectl delete pod simple-nodejs-pod simple-nginx-pod'
