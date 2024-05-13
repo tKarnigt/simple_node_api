@@ -60,7 +60,7 @@ pipeline {
         label 'local'
       }
       steps {
-        sh 'kubectl delete pod simple-nodejs-pod simple-nginx-pod'
+        sh '/usr/local/bin/kubectl delete pod simple-nodejs-pod simple-nginx-pod'
       }
     }
   }
