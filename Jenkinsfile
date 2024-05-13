@@ -48,13 +48,20 @@ pipeline {
       }
     }
     stage('Running Preprod') {
+      // agent {
+      //   label 'preprod'
+      // }
+      // steps {
+      //   sh 'docker compose down'
+      //   sh 'docker system prune -a -f'
+      //   sh 'docker compose up -d'
+      // }
+
       agent {
-        label 'preprod'
+        label 'local'
       }
       steps {
-        sh 'docker compose down'
-        sh 'docker system prune -a -f'
-        sh 'docker compose up -d'
+        sh 'kubectl delete pod simple-nodejs-pod simple-nginx-pod'
       }
     }
   }
