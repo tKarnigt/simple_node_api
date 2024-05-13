@@ -54,7 +54,7 @@ pipeline {
       steps {
         sh 'docker compose down'
         sh 'docker system prune -a -f'
-        sh 'docker sompose up -d'
+        sh 'docker compose up -d'
       }
     }
   }
