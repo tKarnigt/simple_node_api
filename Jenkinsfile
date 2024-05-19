@@ -62,6 +62,6 @@ pipeline {
     //   steps {
     //     sh '/usr/local/bin/kubectl delete pod simple-nodejs-pod simple-nginx-pod'
     //   }
-    // }
+    }
   }
 }
