@@ -46,15 +46,15 @@ pipeline {
         sh 'docker system prune -a -f'
       }
     }
-    // stage('Running Preprod') {
-    //   // agent {
-    //   //   label 'preprod'
-    //   // }
-    //   // steps {
-    //   //   sh 'docker compose down'
-    //   //   sh 'docker system prune -a -f'
-    //   //   sh 'docker compose up -d'
-    //   // }
+    stage('Running Preprod') {
+      agent {
+        label 'preprod'
+      }
+      steps {
+        sh 'docker compose down'
+        sh 'docker system prune -a -f'
+        sh 'docker compose up -d'
+      }
 
     //   agent {
     //     label 'local'
